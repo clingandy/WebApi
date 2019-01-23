@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure.Utils\Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="SqlSugar">
+      <HintPath>C:\Users\admin\.nuget\packages\sqlsugarcore\4.9.3\lib\netstandard2.0\SqlSugar.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <ApplicationIcon />
+    <StartupObject />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Enum\" />
+    <Folder Include="Search\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="SqlSugar">
+      <HintPath>C:\Users\admin\.nuget\packages\sqlsugarcore\4.9.3\lib\netstandard2.0\SqlSugar.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
