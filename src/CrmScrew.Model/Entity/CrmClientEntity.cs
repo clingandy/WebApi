@@ -26,6 +26,14 @@ namespace CrmScrew.Model.Entity
         public string ClientName {get;set;}
 
         /// <summary>
+        /// Desc:
+        /// Default:
+        /// Nullable:Ture
+        /// </summary>
+        [SugarColumn(ColumnName = "realName")]
+        public string RealName { get; set; }
+
+        /// <summary>
         /// Desc:1男0女
         /// Default:b'1'
         /// Nullable:False

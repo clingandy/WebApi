@@ -7,6 +7,7 @@
 *********************************************************************************/
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using CrmScrew.Domain;
 using CrmScrew.Model.Entity;
 using CrmScrew.Model.Enum;
@@ -206,6 +207,16 @@ where (SELECT count(1) AS num FROM crm_product_screw_history b WHERE b.productId
         }
 
         /// <summary>
+        /// 获取订单
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public CrmOrderEntity GetCrmOrder(int id)
+        {
+            return _service.FindById<CrmOrderEntity>(id);
+        }
+
+        /// <summary>
         /// 修改订单item
         /// </summary>
         /// <param name="model"></param>
@@ -213,6 +224,16 @@ where (SELECT count(1) AS num FROM crm_product_screw_history b WHERE b.productId
         public bool ModifyCrmOrderItem(CrmOrderItemEntity model)
         {
             return _service.Update(model);
+        }
+
+        /// <summary>
+        /// 获取订单item
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <returns></returns>
+        public List<CrmOrderItemEntity> GetCrmOrderItemByOrderId(int orderId)
+        {
+            return _service.FindByFunc<CrmOrderItemEntity>(t=> t.OrderId == orderId).ToList();
         }
 
         /// <summary>

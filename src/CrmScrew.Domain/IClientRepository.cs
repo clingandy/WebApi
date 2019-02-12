@@ -25,6 +25,12 @@ namespace CrmScrew.Domain
         /// <returns></returns>
         IList<CrmClientEntity> GetClientPageList(string name, string mobile, ref int totalCount, int pageIndex = 1, int pageSize = 10);
 
+        /// <summary>
+        /// 获取客户
+        /// </summary>
+        /// <param name="clientId"></param>
+        /// <returns></returns>
+        CrmClientEntity GetClient(int clientId);
 
         /// <summary>
         /// 添加客户

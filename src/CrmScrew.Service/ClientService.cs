@@ -40,7 +40,7 @@ namespace CrmScrew.Service
         public IList<CrmClientEntity> FindClientPageList(string name, string mobile, ref int totalCount, int pageIndex = 1, int pageSize = 10)
         {
             return GetInstance().Queryable<CrmClientEntity>()
-                .WhereIF(!name.IsNullOrWhiteSpace(), t => t.ClientName.Contains(name) || t.QQ.Contains(name) || t.WeChat.Contains(name))
+                .WhereIF(!name.IsNullOrWhiteSpace(), t => t.ClientName.Contains(name) || t.QQ.Contains(name) || t.WeChat.Contains(name) || t.RealName.Contains(name))
                 .WhereIF(!mobile.IsNullOrWhiteSpace(), t => t.Mobile.Contains(mobile))
                 .OrderBy(t=> t.ClientId, OrderByType.Desc)
                 .ToPageList(pageIndex, pageSize, ref totalCount).ToList();

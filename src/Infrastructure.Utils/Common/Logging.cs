@@ -34,43 +34,28 @@ namespace Infrastructure.Common
 
         private static bool IsLogApp;
 
-        private static bool IsLogDebug;
-
         private static bool IsLogRelease;
 
         static Logging()
         {
             LogDirectory = string.Empty;
             LogMaxFileSize = 5242880L;
-            IsLogInfo = true;
-            IsLogWarn = true;
-            IsLogError = true;
-            IsLogSystem = true;
-            IsLogTrace = true;
-            IsLogApp = true;
-            IsLogDebug = true;
-            IsLogRelease = true;
-            LogDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
-            if (!string.IsNullOrEmpty(AppSettingsHelper.GetString("LogDirectory", "")))
-            {
-                LogDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AppSettingsHelper.GetString("LogDirectory", ""));
-            }
             IsLogInfo = SetLogging("IsLogInfo", true);
             IsLogError = SetLogging("IsLogError", true);
             IsLogWarn = SetLogging("IsLogWarn", true);
             IsLogSystem = SetLogging("IsLogSystem", true);
             IsLogApp = SetLogging("IsLogApp", false);
             IsLogTrace = SetLogging("IsLogTrace", false);
-            IsLogDebug = SetLogging("IsLogDebug", true);
             IsLogRelease = SetLogging("IsLogRelease", true);
-            if (!string.IsNullOrEmpty(AppSettingsHelper.GetString("LogMaxFileSize","")))
+            LogDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
+            if (!string.IsNullOrEmpty(AppSettingsHelper.GetString("LogDirectory", "")))
             {
-                int num = 0;
-                int.TryParse(AppSettingsHelper.GetString("LogMaxFileSize",""), out num);
-                if (num > 0)
-                {
-                    LogMaxFileSize = (long)(num * 1024 * 1024);
-                }
+                LogDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AppSettingsHelper.GetString("LogDirectory", ""));
+            }
+            int num = AppSettingsHelper.GetIntValue("LogMaxFileSize");
+            if (num > 0)
+            {
+                LogMaxFileSize = (long)(num * 1024 * 1024);
             }
         }
 
@@ -78,7 +63,7 @@ namespace Infrastructure.Common
         {
             if (!string.IsNullOrEmpty(AppSettingsHelper.GetString(setting, "")))
             {
-                return AppSettingsHelper.GetString(setting, "").ToLower() == "true";
+                return AppSettingsHelper.GetBoolValue(setting);
             }
             return defaultValue;
         }
@@ -88,7 +73,7 @@ namespace Infrastructure.Common
         {
             if (log is LoginfoEntity loginfoEntity)
             {
-                Log(GetLogInfo(loginfoEntity), LogDirectory, ".log", loginfoEntity.Type, loginfoEntity.ChildLogDirectory);
+                Log(GetLogInfo(loginfoEntity), LogDirectory, FILE_EXTENSION, loginfoEntity.Type, loginfoEntity.ChildLogDirectory);
             } 
         }
 
@@ -128,7 +113,8 @@ namespace Infrastructure.Common
             {
                 text = Path.Combine(
                         fileDirectory, 
-                        DateTime.Now.ToString("yyyyMM"), DateTime.Now.Day.ToString(), 
+                        DateTime.Now.ToString("yyyyMM"), 
+                        DateTime.Now.Day.ToString(), 
                         string.IsNullOrEmpty(childLogDirectory) ? "" : childLogDirectory,
                         type.ToString()
                         );

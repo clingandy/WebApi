@@ -38,6 +38,16 @@ namespace CrmScrew.Core
         }
 
         /// <summary>
+        /// 获取客户
+        /// </summary>
+        /// <param name="clientId"></param>
+        /// <returns></returns>
+        public CrmClientEntity GetClient(int clientId)
+        {
+            return _service.FindById<CrmClientEntity>(clientId);
+        }
+
+        /// <summary>
         /// 查询客户信息
         /// </summary>
         /// <param name="name"></param>

@@ -110,6 +110,12 @@ namespace CrmScrew.Domain
         /// <returns></returns>
         bool ModifyCrmOrder(CrmOrderEntity model);
 
+        /// <summary>
+        /// 获取订单
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <returns></returns>
+        CrmOrderEntity GetCrmOrder(int orderId);
 
         /// <summary>
         /// 修改订单item
@@ -117,6 +123,13 @@ namespace CrmScrew.Domain
         /// <param name="model"></param>
         /// <returns></returns>
         bool ModifyCrmOrderItem(CrmOrderItemEntity model);
+
+        /// <summary>
+        /// 获取订单item
+        /// </summary>
+        /// <param name="orderId"></param>
+        /// <returns></returns>
+        List<CrmOrderItemEntity> GetCrmOrderItemByOrderId(int orderId);
 
         /// <summary>
         /// 添加订单

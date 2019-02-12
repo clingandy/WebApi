@@ -43,7 +43,7 @@ namespace Infrastructure.Web.Extentions
                     }
                     return filePath;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return "";
                 }

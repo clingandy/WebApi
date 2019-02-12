@@ -75,7 +75,27 @@ namespace Infrastructure.Web.Controllers
                 FileStream fs = new FileStream(addrUrl, FileMode.Open);
                 return File(fs, contentType, saveName);
             }
-            catch (Exception ex)
+            catch (Exception)
+            {
+                return NotFound();
+            }
+        }
+
+        /// <summary>
+        /// 下载
+        /// </summary>
+        /// <param name="saveName">下载后文件名称 带后缀</param>
+        /// <param name="bytes">字节</param>
+        /// <param name="contentType">默认：二进制流，不知道下载文件类型</param>
+        /// <returns></returns>
+        protected ActionResult DownloadFile(string saveName, byte[] bytes, string contentType = "application/octet-stream")
+        {
+            try
+            {
+                HttpContext.Response.Headers["Access-Control-Expose-Headers"] = "Content-Disposition";  //设置headers用于前端获取文件名
+                return File(bytes, contentType, saveName);
+            }
+            catch (Exception)
             {
                 return NotFound();
             }
