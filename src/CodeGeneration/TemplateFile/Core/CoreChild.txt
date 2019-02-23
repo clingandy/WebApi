@@ -1,0 +1,57 @@
+﻿        #region {desc}
+
+        /// <summary>
+        /// 查询{desc}信息
+        /// </summary>
+        /// <param name="search"></param>
+        /// <param name="totalCount"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="orderByStr">默认主键倒序</param>
+        /// <returns></returns>
+        public IList<{tableName}Entity> Get{tableName}PageList({tableName}View search, ref int totalCount, int pageIndex = 1, int pageSize = 10, string orderByStr="{primaryKey} desc")
+        {
+            return _service.Find{tableName}ByPage(search, orderByStr, ref totalCount, pageIndex, pageSize);
+        }
+
+        /// <summary>
+        /// 获取{desc}
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public {tableName}Entity Get{tableName}(int id)
+        {
+            return _service.FindById<{tableName}Entity>(id);
+        }
+
+        /// <summary>
+        /// 添加{desc}
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public bool Add{tableName}({tableName}Entity model)
+        {
+            return _service.Insert(model);
+        }
+
+        /// <summary>
+        /// 修改{desc}
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public bool Modify{tableName}({tableName}Entity model)
+        {
+            return _service.Update(model);
+        }
+
+        /// <summary>
+        /// 删除{desc}
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public bool Del{tableName}ById(int id)
+        {
+            return _service.Delete<{tableName}Entity>(id);
+        }
+
+        #endregion

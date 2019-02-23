@@ -1,0 +1,27 @@
+﻿/********************************************************************************
+** Company：  
+** auth：    lingyc
+** date：    {dt}
+** desc：    {tableName}Repository类
+** Ver.:     V1.0.0
+*********************************************************************************/
+using System;
+using System.Collections.Generic;
+using {namespace}.Domain;
+using {namespace}.Model.Entity;
+using {namespace}.Model.View;
+using {namespace}.Service;
+
+namespace {namespace}.Core
+{
+    public class {tableName}Repository : I{tableName}Repository
+    {
+        #region 属性
+
+        private readonly {tableName}Service _service = {tableName}Service.Instance;
+
+        #endregion
+
+{child}
+    }
+}

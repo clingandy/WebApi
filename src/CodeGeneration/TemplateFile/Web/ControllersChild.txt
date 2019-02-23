@@ -1,0 +1,71 @@
+﻿        #region {desc}
+
+        /// <summary>
+        /// 获取全部{desc}
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(200, Type = typeof(ApiResult<List<{tableName}Entity>>))]
+        public ActionResult<object> Get{tableName}PageList([FromQuery]{tableName}View model, int pageIndex = 1, int pageSize = 10)
+        {
+            var totalCount = 0;
+            var r = _cache.GetOrCreate($"{tableName}Controller_Get{tableName}PageList_{model.GetHashCode()}_{pageIndex}_{pageSize})".ToLower(), (entry) =>
+            {
+                var list = _repository.Get{tableName}PageList(model, ref totalCount, pageIndex, pageSize);
+                entry.SetAbsoluteExpiration(TimeSpan.FromSeconds(30));
+                return list;
+            });
+            return r.ResponseSuccess("", totalCount);
+        }
+
+        /// <summary>
+        /// 根据ID获取{desc}
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [ProducesResponseType(200, Type = typeof(ApiResult<{tableName}Entity>))]
+        public ActionResult<object> Get{tableName}(int id)
+        {
+            return _repository.Get{tableName}(id).ResponseSuccess();
+        }
+
+        /// <summary>
+        /// 更新{desc}
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPut]
+        [ProducesResponseType(200, Type = typeof(ApiResult<bool>))]
+        public ActionResult<object> Modify{tableName}([FromForm]{tableName}Entity model)
+        {
+            return _repository.Modify{tableName}(model).ResponseSuccessFailure();
+        }
+
+        /// <summary>
+        /// 插入{desc}
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [ProducesResponseType(200, Type = typeof(ApiResult<bool>))]
+        public ActionResult<object> Add{tableName}([FromForm]{tableName}Entity model)
+        {
+            return _repository.Add{tableName}(model).ResponseSuccessFailure();
+        }
+
+        /// <summary>
+        /// 删除{desc}
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete]
+        [ProducesResponseType(200, Type = typeof(ApiResult<bool>))]
+        public ActionResult<object> Del{tableName}ById(int id)
+        {
+            return _repository.Del{tableName}ById(id).ResponseSuccessFailure();
+        }
+        #endregion

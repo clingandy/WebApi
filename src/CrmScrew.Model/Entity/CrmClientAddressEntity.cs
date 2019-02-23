@@ -21,7 +21,7 @@ namespace CrmScrew.Model.Entity
         /// Default:
         /// Nullable:False
         /// </summary>
-        [SugarColumn(ColumnName= "ClientId")]
+        [SugarColumn(ColumnName= "clientId")]
         public int ClientId {get;set;}
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace CrmScrew.Model.Entity
         /// Default:
         /// Nullable:False
         /// </summary>
-        [SugarColumn(ColumnName= "FullAddress")]
+        [SugarColumn(ColumnName= "fullAddress")]
         public string FullAddress {get;set;}
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace CrmScrew.Model.Entity
         /// Default:
         /// Nullable:False
         /// </summary>
-        [SugarColumn(ColumnName= "Mobile")]
+        [SugarColumn(ColumnName= "mobile")]
         public string Mobile {get;set;}
 
         /// <summary>

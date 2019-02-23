@@ -1,0 +1,32 @@
+﻿/********************************************************************************
+** Company：  
+** auth：    lingyc
+** date：    {dt}
+** desc：    {tableName}Service类
+** Ver.:     V1.0.0
+*********************************************************************************/
+
+using System;
+using System.Collections.Generic;
+using {namespace}.Model.Entity;
+using {namespace}.Model.View;
+using {namespace}.Service.Base;
+using Infrastructure.Common;
+
+namespace {namespace}.Service
+{
+    public class {tableName}Service : SqlSugarBase
+    {
+        #region 构造函数、单列
+
+        private {tableName}Service() {}
+
+        public static readonly {tableName}Service Instance = new Lazy<{tableName}Service>(() => new {tableName}Service()).Value;
+
+        #endregion
+
+{child}
+        
+    }
+
+}

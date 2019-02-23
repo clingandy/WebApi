@@ -1,0 +1,42 @@
+﻿        #region {desc}
+
+        /// <summary>
+        /// 查询{desc}信息
+        /// </summary>
+        /// <param name="search"></param>
+        /// <param name="totalCount"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="orderByStr">默认主键倒序</param>
+        /// <returns></returns>
+        IList<{tableName}Entity> Get{tableName}PageList({tableName}View search, ref int totalCount, int pageIndex = 1, int pageSize = 10, string orderByStr="{primaryKey} desc");
+
+        /// <summary>
+        /// 获取{desc}
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        {tableName}Entity Get{tableName}(int id);
+
+        /// <summary>
+        /// 添加{desc}
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        bool Add{tableName}({tableName}Entity model);
+
+        /// <summary>
+        /// 修改{desc}
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        bool Modify{tableName}({tableName}Entity model);
+
+        /// <summary>
+        /// 删除{desc}
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        bool Del{tableName}ById(int id);
+
+        #endregion

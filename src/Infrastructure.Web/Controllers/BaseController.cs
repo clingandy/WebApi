@@ -90,15 +90,8 @@ namespace Infrastructure.Web.Controllers
         /// <returns></returns>
         protected ActionResult DownloadFile(string saveName, byte[] bytes, string contentType = "application/octet-stream")
         {
-            try
-            {
-                HttpContext.Response.Headers["Access-Control-Expose-Headers"] = "Content-Disposition";  //设置headers用于前端获取文件名
-                return File(bytes, contentType, saveName);
-            }
-            catch (Exception)
-            {
-                return NotFound();
-            }
+            HttpContext.Response.Headers["Access-Control-Expose-Headers"] = "Content-Disposition";  //设置headers用于前端获取文件名
+            return File(bytes, contentType, saveName);
         }
 
         #endregion

@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using Infrastructure.Common;
+using {namespace}.Domain;
+using {namespace}.Model.Entity;
+using {namespace}.Model.View;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
+
+namespace {namespace}.Web.Controllers
+{
+    /// <summary>
+    /// 系统管理
+    /// </summary>
+    [Route("api/[controller]/[action]")]
+    [ApiController]
+    public class {tableName}Controller : ControllerBase
+    {
+        #region 构造
+
+        private readonly IMemoryCache _cache;
+        private readonly I{tableName}Repository _repository;
+
+        /// <summary>
+        /// 构造方法
+        /// </summary>
+        public {tableName}Controller(I{tableName}Repository repository, IMemoryCache cache)
+        {
+            _cache = cache;
+            _repository = repository;
+        }
+
+        #endregion
+
+{child}
+    }
+}

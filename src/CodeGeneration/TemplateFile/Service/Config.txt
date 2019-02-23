@@ -1,0 +1,17 @@
+﻿/********************************************************************************
+** Company：  
+** auth：    lingyc
+** date：    {0}
+** desc：    Config类
+** Ver.:     V1.0.0
+*********************************************************************************/
+
+using Infrastructure.Common;
+
+namespace {1}.Service.Base
+{
+    public class DbConfig
+    {
+        public static string ConnectionString = AppSettingsHelper.GetString("DbConnectionString", "");
+    }
+}

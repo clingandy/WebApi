@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -116,7 +117,15 @@ namespace Infrastructure.Web.Controllers.ScrewManage
                 return false.ResponseDataError("上传文件失败，格式不对或超过限制文件大小");
             }
             var errorMsgList = new List<string>();
-            var table = NpoiExcelHelper.ExcelToTable(filePath);
+            DataTable table;
+            try
+            {
+                table = NpoiExcelHelper.ExcelToTable(filePath);
+            }
+            catch (Exception ex)
+            {
+                return false.ResponseDataError($"数据转换失败，错误信息：{ex.Message}");
+            }
             var importData = new List<CrmProductScrewEntity>();
             if (table.Rows.Count > 0)
             {

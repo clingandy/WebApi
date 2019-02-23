@@ -60,7 +60,7 @@ namespace CrmScrew.Service
             if (search.CreateDate?.Count > 0) search.CreateDate[0] = search.CreateDate[0].Date;
             if (search.CreateDate?.Count > 1) search.CreateDate[1] = search.CreateDate[1].AddDays(1).Date;
 
-            var orderList = GetInstance().Queryable<CrmOrderEntity, CrmClientEntity, CrmOrderItemEntity>((t1,t2,t3)=> new object[]
+            var orderList = GetInstance().Queryable<CrmOrderEntity, CrmClientEntity, CrmOrderItemEntity>((t1, t2, t3) => new object[]
                 {
                     JoinType.Left, t1.ClientId == t2.ClientId,
                     JoinType.Left, t1.OrderId == t3.OrderId
@@ -69,11 +69,11 @@ namespace CrmScrew.Service
                 .WhereIF(!search.Mobile.IsNullOrWhiteSpace(), (t1, t2, t3) => t2.Mobile.Contains(search.Mobile))
                 .WhereIF(!search.ProductName.IsNullOrWhiteSpace(), (t1, t2, t3) => t3.ProductFullName.Contains(search.ProductName))
                 .WhereIF(search.CreateDate?.Count > 0, (t1, t2, t3) => t1.CreateTime >= search.CreateDate[0])
-                .WhereIF(search.CreateDate?.Count > 1, (t1, t2, t3) => t1.CreateTime <= search.CreateDate[1])
+                .WhereIF(search.CreateDate?.Count > 1, (t1, t2, t3) => t1.CreateTime < search.CreateDate[1])
                 .WhereIF(search.OrderStatus != null, (t1, t2, t3) => t1.Status == search.OrderStatus)
                 .GroupBy((t1, t2, t3) => t1.OrderId)
-                .OrderBy((t1, t2, t3) => t1.OrderId , OrderByType.Desc)
-                .Select((t1, t2, t3) => new CrmOrderView{ ClientName = t2.ClientName, Order = t1})
+                .OrderBy((t1, t2, t3) => t1.OrderId, OrderByType.Desc)
+                .Select((t1, t2, t3) => new CrmOrderView { ClientName = t2.ClientName, Order = t1 })
                 .ToPageList(pageIndex, pageSize, ref totalCount);
 
             if (orderList.Count > 0)

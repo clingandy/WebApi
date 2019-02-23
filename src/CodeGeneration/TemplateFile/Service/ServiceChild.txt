@@ -1,0 +1,19 @@
+﻿        #region {desc}
+
+        /// <summary>
+        /// 获取{desc}列表
+        /// </summary>
+        /// <param name="search"></param>
+        /// <param name="orderByStr"></param>
+        /// <param name="totalCount"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        public IList<{tableName}Entity> Find{tableName}ByPage({tableName}View search, string orderByStr, ref int totalCount, int pageIndex = 1, int pageSize = 10)
+        {
+{searchConvert}return GetInstance().Queryable<{tableName}Entity>()
+{search}.OrderBy(orderByStr)
+                .ToPageList(pageIndex, pageSize, ref totalCount);
+        }
+        
+        #endregion

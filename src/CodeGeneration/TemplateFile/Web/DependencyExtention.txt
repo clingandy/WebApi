@@ -1,0 +1,18 @@
+﻿using {0}.Core;
+using {0}.Domain;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace {0}.Web.Extentions
+{
+    public static class DependencyExtention
+    {
+        /// <summary>
+        /// 注入 Core自带
+        /// </summary>
+        /// <param name="services"></param>
+        public static void RegisDependency(this IServiceCollection services)
+        {
+{1}
+        }
+    }
+}

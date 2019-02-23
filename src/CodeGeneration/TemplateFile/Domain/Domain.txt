@@ -1,0 +1,19 @@
+﻿/********************************************************************************
+** Company：  
+** auth：    lingyc
+** date：    {dt}
+** desc：    I{tableName}Repository类
+** Ver.:     V1.0.0
+*********************************************************************************/
+using System.Collections.Generic;
+using {namespace}.Model.Entity;
+using {namespace}.Model.View;
+
+namespace {namespace}.Domain
+{
+    public interface I{tableName}Repository
+    {
+{child}
+    }
+}
+
